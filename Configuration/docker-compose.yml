@@ -96,6 +96,23 @@ services:
       - wazuh.indexer:wazuh.indexer
       - wazuh.manager:wazuh.manager
 
+  wazuh.agent:
+    image: wazuh/wazuh-agent:4.14.3
+    container_name: wazuh.agent
+    hostname: wazuh.agent
+    environment:
+      - WAZUH_MANAGER_SERVER=wazuh.manager
+      - WAZUH_AGENT_NAME=docker-lab-agent
+    volumes:
+      - ./wazuh-agent/ossec.conf:/var/ossec/etc/ossec.conf
+      - ./logs/dvwa:/mnt/logs/dvwa:ro
+      - ./logs/xvwa:/mnt/logs/xvwa:ro
+      #- /var/lib/docker/containers:/var/lib/docker/containers:ro
+      #- /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - wazuh.manager
+    restart: unless-stopped
+
   dvwa:
     image: vulnerables/web-dvwa
     container_name: dvwa

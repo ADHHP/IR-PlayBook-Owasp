@@ -1,0 +1,23 @@
+<ossec_config>
+
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/mnt/logs/dvwa/access.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/mnt/logs/dvwa/error.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/mnt/logs/xvwa/access.log</location>
+  </localfile>
+
+  <localfile>
+    <log_format>apache</log_format>
+    <location>/mnt/logs/xvwa/error.log</location>
+  </localfile>
+
+</ossec_config>
